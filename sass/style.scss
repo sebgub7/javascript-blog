@@ -110,3 +110,18 @@ body {
     margin: 0 10px 0 0;
   }
 }
+.tag-size-1 {
+  font-size: 100%;
+  color: green;
+}
+.tag-size-3 {
+  font-size: 150%;
+  color: blue;
+}
+.tag-size-5 {
+  font-size: 200%;
+  color: red;
+}
+.sidebar .list {
+  diplay: inline;
+}
