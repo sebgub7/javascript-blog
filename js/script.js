@@ -103,7 +103,7 @@ function calculateTagsParams(tags) {
   for (let tag in tags) {
     console.log(tag + ' is used ' + tags[tag] + ' times');
     params.max = Math.max(tags[tag], params.max),
-    params.min = Math.min(tags[tag], params.min);
+      params.min = Math.min(tags[tag], params.min);
   }
   return params;
 }
@@ -111,11 +111,11 @@ function calculateTagsParams(tags) {
 calculateTagsParams();
 
 function calculateTagClass(count, params) {
-const normalizedCount = count - params.min;
-const normalizedMax = params.max - params.min;
-const percentage = normalizedCount / normalizedMax;
-const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
-return optCloudClassPrefix + classNumber;
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
+  return optCloudClassPrefix + classNumber;
 }
 
 function generateTags() {
@@ -178,7 +178,7 @@ function generateTags() {
 
       const tagLinkHTML = calculateTagClass(allTags[tag], tagsParams) + ' ';
       console.log('tagLinkHTML:', tagLinkHTML);
-       allTagsHTML += '<a class="' + tagLinkHTML + '" href="#tag-' + tag + '"><span>' + tag + '</a>' + '</span> ';
+      allTagsHTML += '<a class="' + tagLinkHTML + '" href="#tag-' + tag + '"><span>' + tag + '</a>' + '</span> ';
     }
     /* [NEW] END LOOP: for each tag in allTags: */
 
@@ -252,7 +252,7 @@ function calculateAuthorsParams(authors) {
   for (let author in authors) {
     console.log(author + ' is used ' + authors[author] + ' times');
     params.max = Math.max(authors[author], params.max),
-    params.min = Math.min(authors[author], params.min);
+      params.min = Math.min(authors[author], params.min);
   }
   return params;
 }
@@ -260,11 +260,11 @@ function calculateAuthorsParams(authors) {
 calculateAuthorsParams();
 
 function calculateAuthorsClass(count, params) {
-const normalizedCount = count - params.min;
-const normalizedMax = params.max - params.min;
-const percentage = normalizedCount / normalizedMax;
-const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
-return optCloudClassPrefixAuthor + classNumber;
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
+  return optCloudClassPrefixAuthor + classNumber;
 }
 
 function generateAuthors() {
@@ -284,7 +284,7 @@ function generateAuthors() {
     console.log('linkHTML', linkHTML)
     html = html + linkHTML;
     console.log('html:', html);
-    if(!allAuthors[articleAuthor]) {
+    if (!allAuthors[articleAuthor]) {
       allAuthors[articleAuthor] = 1;
     } else {
       allAuthors[articleAuthor]++;
@@ -297,9 +297,9 @@ function generateAuthors() {
 
       const authorLinkHTML = calculateAuthorsClass(allAuthors[author], authorsParams) + ' ';
       console.log('authorLinkHTML:', authorLinkHTML);
-       allAuthorsHTML += '<li><a class="' + authorLinkHTML + '" href="#author-' + author + '"><span>' + author + '</a>' + '</span></li> ';
-     }
-     authorList.innerHTML = allAuthorsHTML;
+      allAuthorsHTML += '<li><a class="' + authorLinkHTML + '" href="#author-' + author + '"><span>' + author + '</a>' + '</span></li> ';
+    }
+    authorList.innerHTML = allAuthorsHTML;
   }
 }
 
