@@ -54,7 +54,8 @@ const optArticleSelector = '.post',
   optTagsListSelector = '.tags .list',
   optCloudClassCount = '5',
   optCloudClassPrefix = 'tag-size-',
-  optAuthorListSelector = '.authors .list'
+  optAuthorListSelector = '.authors .list',
+  optCloudClassPrefixAuthor = 'author-size-';
 
 function generateTitleLinks(customSelector = '') {
 
@@ -243,12 +244,36 @@ function addClickListenersToTags() {
 
 addClickListenersToTags();
 
+function calculateAuthorsParams(authors) {
+  const params = {
+    max: 0,
+    min: 999999,
+  }
+  for (let author in authors) {
+    console.log(author + ' is used ' + authors[author] + ' times');
+    params.max = Math.max(authors[author], params.max),
+    params.min = Math.min(authors[author], params.min);
+  }
+  return params;
+}
+
+calculateAuthorsParams();
+
+function calculateAuthorsClass(count, params) {
+const normalizedCount = count - params.min;
+const normalizedMax = params.max - params.min;
+const percentage = normalizedCount / normalizedMax;
+const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+return optCloudClassPrefixAuthor + classNumber;
+}
 
 function generateAuthors() {
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
   console.log('authors', articles);
   let allAuthors = {};
+  const authorsParams = calculateAuthorsParams(allAuthors);
+  console.log('authorsParams', authorsParams);
   console.log('allAuthors', allAuthors);
   for (let article of articles) {
     const titleList = article.querySelector(optArticleAuthorSelector);
@@ -259,7 +284,22 @@ function generateAuthors() {
     console.log('linkHTML', linkHTML)
     html = html + linkHTML;
     console.log('html:', html);
+    if(!allAuthors[articleAuthor]) {
+      allAuthors[articleAuthor] = 1;
+    } else {
+      allAuthors[articleAuthor]++;
+    }
     titleList.innerHTML = html;
+    const authorList = document.querySelector('.authors');
+    let allAuthorsHTML = '';
+
+    for (let author in allAuthors) {
+
+      const authorLinkHTML = calculateAuthorsClass(allAuthors[author], authorsParams) + ' ';
+      console.log('authorLinkHTML:', authorLinkHTML);
+       allAuthorsHTML += '<li><a class="' + authorLinkHTML + '" href="#author-' + author + '"><span>' + author + '</a>' + '</span></li> ';
+     }
+     authorList.innerHTML = allAuthorsHTML;
   }
 }
 
