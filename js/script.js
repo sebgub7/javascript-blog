@@ -37,7 +37,7 @@ const titleClickHandler = function(event) {
   /* add class 'active' to the correct article */
 
   targetArticle.classList.add('active');
-}
+};
 
 const links = document.querySelectorAll('.titles a');
 
@@ -51,10 +51,8 @@ const optArticleSelector = '.post',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post-author',
-  optTagsListSelector = '.tags .list',
   optCloudClassCount = '5',
   optCloudClassPrefix = 'tag-size-',
-  optAuthorListSelector = '.authors .list',
   optCloudClassPrefixAuthor = 'author-size-';
 
 function generateTitleLinks(customSelector = '') {
@@ -99,11 +97,11 @@ function calculateTagsParams(tags) {
   const params = {
     max: 0,
     min: 999999,
-  }
+  };
   for (let tag in tags) {
     console.log(tag + ' is used ' + tags[tag] + ' times');
     params.max = Math.max(tags[tag], params.max),
-      params.min = Math.min(tags[tag], params.min);
+    params.min = Math.min(tags[tag], params.min);
   }
   return params;
 }
@@ -169,7 +167,7 @@ function generateTags() {
 
     /* [NEW] create variable for all links HTML code */
     const tagsParams = calculateTagsParams(allTags);
-    console.log('tagsParams:', tagsParams)
+    console.log('tagsParams:', tagsParams);
     let allTagsHTML = '';
 
     /* [NEW] START LOOP: for each tag in allTags: */
@@ -248,11 +246,11 @@ function calculateAuthorsParams(authors) {
   const params = {
     max: 0,
     min: 999999,
-  }
+  };
   for (let author in authors) {
     console.log(author + ' is used ' + authors[author] + ' times');
     params.max = Math.max(authors[author], params.max),
-      params.min = Math.min(authors[author], params.min);
+    params.min = Math.min(authors[author], params.min);
   }
   return params;
 }
@@ -281,7 +279,7 @@ function generateAuthors() {
     const articleAuthor = article.getAttribute('data-author');
     console.log('articleAuthor', articleAuthor);
     const linkHTML = '<a href="#author-' + articleAuthor + '">' + articleAuthor + '</a> ';
-    console.log('linkHTML', linkHTML)
+    console.log('linkHTML', linkHTML);
     html = html + linkHTML;
     console.log('html:', html);
     if (!allAuthors[articleAuthor]) {
